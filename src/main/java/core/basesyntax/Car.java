@@ -16,8 +16,12 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheels.stream().map(Wheel::new).toList();
-        this.engine = new Engine(engine);
+        List<Wheel> copiedWheel = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            copiedWheel.add(new Wheel(wheel));
+        }
+        this.wheels = copiedWheel;
+        this.engine = engine == null ? null : new Engine(engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -39,11 +43,15 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return wheels.stream().map(Wheel::new).toList();
+        List<Wheel> copiedWheel = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            copiedWheel.add(new Wheel(wheel));
+        }
+        return copiedWheel;
     }
 
     public Engine getEngine() {
-        return new Engine(engine);
+        return engine == null ? null : new Engine(engine);
     }
 
     public String getColor() {
