@@ -7,32 +7,31 @@ import java.util.Objects;
 /**
  * Make this class immutable. See requirements in task description.
  */
-public class Car {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    public Car(String color, Engine engine, List<Wheel> wheels, int year) {
+    public Car(int year, String color, Engine engine, List<Wheel> wheels) {
+        this.year = year;
         this.engine = new Engine(engine);
         this.color = color;
         this.wheels = wheels.stream().map(Wheel::new).toList();
-        this.year = year;
-
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(color, engine, wheels, year);
+        return new Car(year, color, engine, wheels);
     }
 
     public Car changeColor(String color) {
-        return new Car(color, engine, wheels, year);
+        return new Car(year, color, engine, wheels);
     }
 
     public Car addWheel(Wheel wheel) {
         List<Wheel> newWheels = new ArrayList<>(wheels);
         newWheels.add(new Wheel(wheel));
-        return new Car(color, engine, newWheels, year);
+        return new Car(year, color, engine, newWheels);
     }
 
     public int getYear() {
