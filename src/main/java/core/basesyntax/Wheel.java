@@ -26,7 +26,7 @@ public class Wheel {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         Wheel wheel = (Wheel) o;
