@@ -13,25 +13,25 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    public Car(int year, String color, Engine engine, List<Wheel> wheels) {
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
-        this.engine = new Engine(engine);
         this.color = color;
         this.wheels = wheels.stream().map(Wheel::new).toList();
+        this.engine = new Engine(engine);
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, engine, wheels);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, engine, wheels);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car addWheel(Wheel wheel) {
         List<Wheel> newWheels = new ArrayList<>(wheels);
         newWheels.add(new Wheel(wheel));
-        return new Car(year, color, engine, newWheels);
+        return new Car(year, color, newWheels, engine);
     }
 
     public int getYear() {
